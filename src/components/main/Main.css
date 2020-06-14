@@ -1,0 +1,36 @@
+.places-parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh;
+  }
+  .exp{
+    color: purple;
+    height: 30vh;
+    text-align: center;
+  } 
+  @media screen and (max-width: 600px) {
+    .exp{
+      color: purple;
+      height: 40vh;
+      width: auto !important;
+      padding: 10;
+    }
+  }
+  .color{
+    color: purple;
+  }
+  .container{
+    padding: 24;
+    min-height: 80vh;
+   
+  }
+  .container-head{
+    padding-top: 1px;
+  }
+  .container-inner{
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+  }

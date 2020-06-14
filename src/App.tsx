@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import Main from './components/main/Main';
+import Auth from './components/auth/Auth';
+import Header from './components/header-footer/Header';
+import Footer from './components/header-footer/Footer';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import PrivateRoute from './PrivateRoute';
+
+
+
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Header />
+        <div style={{ minHeight: '90vh' }}>
+          <Route path="/search" exact component={Main} />
+          <Route path="/" exact component={Auth} />
+        </div>
+        <Footer />
+      </Router>
     </div>
+
   );
 }
 

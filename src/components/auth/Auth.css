@@ -1,0 +1,42 @@
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(149, 195, 226);
+    height: 90vh;
+
+}
+.formwrapper{
+   margin-top: 15vh;
+}
+.cardStyle{
+    width: 35vw;
+    padding: 10
+}
+.margin{
+    margin: 10px
+}
+.example{
+    position:absolute !important;
+    }
+@media screen and (max-width: 600px) {
+    .cardStyle{
+        width: 60vw;
+        padding: 2
+    }
+    .margin{
+        margin: 5px
+    }
+  }
+
+@media screen and (max-width: 300px) {
+    .cardStyle{
+        width: 90vw;
+        padding: 2
+    }
+    .margin{
+        margin: 5px
+    }
+  }
+  
