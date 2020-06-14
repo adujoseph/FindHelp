@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Menu, Input, List, Rate, Card, Avatar, Typography, Spin, Select, Row, Col, } from 'antd';
+import { Layout, Input, List, Rate, Card, Avatar, Typography, Spin, Select, Row, Col, } from 'antd';
 import {
     getPlaces,
     getSuggestions,
@@ -7,13 +7,10 @@ import {
     saveSearchHistory,
     getSearchHistory
 } from '../../api/api';
-// import HeaderContent from '../';
-// import FooterContent from '../header_footer/footer';
 import './Main.css';
 
 import { withRouter } from "react-router-dom";
 import { RouteComponentProps } from "react-router-dom";
-import { cursorTo } from 'readline';
 import FirebaseApp from '../../config/firebase';
 
 
@@ -24,11 +21,11 @@ type MainProps = IProps & RouteComponentProps;
 interface IState { }
 
 const { Option } = Select;
-const { Header, Content, Footer } = Layout;
+const { Content } = Layout;
 const { Text } = Typography;
 
 
-const Main = (props: MainProps) => {
+const Main = (props: MainProps | any) => {
     const [data, setData] = useState('');
     const [address, setAddress] = useState('');
     const [results, setResults] = useState<any[]>([]);

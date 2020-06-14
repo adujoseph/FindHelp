@@ -56,7 +56,7 @@ const getGeoCodes = async (address: string) => {
 }
 
 const saveSearchHistory = async (addr: String) => {
-    const url_local: string = 'http://localhost:5000/api/v1/searches';
+    // const url_local: string = 'http://localhost:5000/api/v1/searches';
     const url: string = 'https://obscure-inlet-96721.herokuapp.com/api/v1/searches';
     console.log('add string: ', addr);
     try {
@@ -67,7 +67,7 @@ const saveSearchHistory = async (addr: String) => {
 }
 
 const getSearchHistory = async () => {
-    const url_local: string = 'http://localhost:5000/api/v1/searches';
+   // const url_local: string = 'http://localhost:5000/api/v1/searches';
    const url: string = 'https://obscure-inlet-96721.herokuapp.com/api/v1/searches';
     try {
         return axios.get(url)

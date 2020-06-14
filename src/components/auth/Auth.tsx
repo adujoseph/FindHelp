@@ -23,11 +23,11 @@ const Auth = (props: any) => {
         }
         notification.open({
             message: mssg,
-            description: 'You have successfully sign up on NextClinic',
+            description: 'You have successfully sign up on NextHelp',
             icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
 
         });
-        props.history.push('/search')
+        // props.history.push('/search')
     };
 
     const handleRegister = () => {
@@ -41,7 +41,7 @@ const Auth = (props: any) => {
             })
             .catch(function (error) {
                 // Handle Errors here.
-                var errorCode = error.code;
+                //var errorCode = error.code;
                 var errorMessage = error.message;
                 setError(errorMessage);
                 // ...
@@ -60,7 +60,7 @@ const Auth = (props: any) => {
             })
             .catch(function (error) {
                 // Handle Errors here.
-                var errorCode = error.code;
+                //var errorCode = error.code;
                 var errorMessage = error.message;
                 setError(errorMessage);
                 // ...

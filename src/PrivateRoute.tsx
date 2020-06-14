@@ -1,43 +1,56 @@
-import React, { useEffect , useState, Component} from 'react';
-import Auth from './components/auth/Auth';
-import firebaseApp from './config/firebase'
-import { Redirect } from 'react-router-dom';
+ import React, { useEffect , useState, Component} from 'react';
+// import Auth from './components/auth/Auth';
+// import firebaseApp from './config/firebase'
+// import { Redirect } from 'react-router-dom';
+// import Main from './components/main/Main';
 
-const PrivateRoute = (props:Component) => {
-    useEffect(() => {
+// const PrivateRoute = (props:Component) => {
 
-    },[])
+//     const [currentUser, setCurrentUser] = useState< any | null >({});
 
-    const [currentUser, setCurrentUser] = useState< any | null >({});
+//     useEffect(()=>{
+//         authListerner();
+//     }, [])
 
-    useEffect(()=>{
-      firebaseApp.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User is signed in.
-          console.log(user)
-          setCurrentUser(user)
-          // var displayName = user.displayName;
-          // var email = user.email;
-          // var emailVerified = user.emailVerified;
-          // var photoURL = user.photoURL;
-          // var isAnonymous = user.isAnonymous;
-          // var uid = user.uid;
-          // var providerData = user.providerData;
-          // ...
-        } else {
-          // User is signed out.
-          // ...
-          setCurrentUser(null)
-        }
-      });
-    }, [])
+//     const authListerner = () => {
+//         firebaseApp.auth().onAuthStateChanged((user) => {
+//             if(user){
+//                 setCurrentUser(user)
+//             }else {
+//                 setCurrentUser(null)
+//             }
+//         })
+//     }
 
-    return(   
-            <Auth />
-    )
-}
+//     return(   
+//             <div>
+//                 {currentUser ? (<Main />) : (<Auth />)}
+//             </div>
+//     )
+// }
 
 
+
+
+// firebaseApp.auth().onAuthStateChanged(function(user) {
+//     if (user) {
+//       // User is signed in.
+//       console.log(user)
+//       setCurrentUser(user)
+//       // var displayName = user.displayName;
+//       // var email = user.email;
+//       // var emailVerified = user.emailVerified;
+//       // var photoURL = user.photoURL;
+//       // var isAnonymous = user.isAnonymous;
+//       // var uid = user.uid;
+//       // var providerData = user.providerData;
+//       // ...
+//     } else {
+//       // User is signed out.
+//       // ...
+//       setCurrentUser(null)
+//     }
+//   });
 // :
 //             <Redirect to='/' />
     
