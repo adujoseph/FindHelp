@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import firebase from "firebase";
 import 'firebase/auth'
 
 const config = {
@@ -14,5 +14,26 @@ const config = {
 }
 
 const FirebaseApp = firebase.initializeApp(config);
+let nextApi = firebase.initializeApp(config, 'nextapi-67649');
+
+export const fireMethods = {
+    dataBase: nextApi.firestore(),
+    auth: nextApi.auth(),
+}
+
+
+
+// export const authRes = async () => {
+//     await firebase.auth().onAuthStateChanged((user) => {
+//     return user
+//     //   if (user) {
+//     //     setCurrentUser(user)
+//     //     console.log('from the Auth State Change',user['uid']);
+//     //     postUser(user['uid']);
+//     //   } else {
+//     //     setCurrentUser(null)
+//     //   }
+//     })
+//   }
 
 export default FirebaseApp;

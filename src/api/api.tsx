@@ -1,5 +1,6 @@
 import axios from "axios";
 import { config } from '../config/config';
+import firebaseApp from '../config/firebase';
 
 
 const getSuggestions = async (data: string) => {
@@ -75,12 +76,34 @@ const getSearchHistory = async () => {
         return err;
     }
 }
+const saveUser = async (user: String) => {
+    const url_local: string = 'http://localhost:5000/api/v1/user';
+    // const url: string = 'https://obscure-inlet-96721.herokuapp.com/api/v1/searches';
+    try {
+        return axios.post(url_local, {username: user})
+    } catch (err) {
+        return err;
+    }
+}
 
-
+const authListerner = async () => {
+    firebaseApp.auth().onAuthStateChanged((user) => {
+        return user;
+    //   if (user) {
+    //     setCurrentUser(user)
+    //     console.log('from the Auth State Change',user['uid']);
+    //     postUser(user['uid']);
+    //   } else {
+    //     setCurrentUser(null)
+    //   }
+    })
+  }
 export {
     getSuggestions,
     getPlaces,
     getGeoCodes,
     saveSearchHistory,
-    getSearchHistory
+    getSearchHistory, 
+    saveUser, 
+    authListerner
 }

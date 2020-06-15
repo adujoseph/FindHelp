@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Auth.css';
 import { Card, Input, Button, notification } from 'antd';
-import Icon from '@ant-design/icons';
+import {SmileOutlined} from '@ant-design/icons';
 import FirebaseApp from '../../config/firebase';
 
 
@@ -23,8 +23,8 @@ const Auth = (props: any) => {
         }
         notification.open({
             message: mssg,
-            description: 'You have successfully sign up on NextHelp',
-            icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
+            description: 'Welcome to FindHelp, Find help around you',
+            icon: <SmileOutlined  style={{ color: '#108ee9' }} />,
 
         });
         // props.history.push('/search')
@@ -52,10 +52,11 @@ const Auth = (props: any) => {
             setError('You cannot submit an empty field');
         } else {
             FirebaseApp.auth().signInWithEmailAndPassword(email, password)
-            .then( resp => {
+            .then((resp ) => {
                 console.log('login reponse', resp)
+
                 if (resp) {
-                    openNotification('register');
+                    openNotification('login');
                 }
             })
             .catch(function (error) {
