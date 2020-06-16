@@ -15,11 +15,25 @@
     padding: 10
 }
 .margin{
-    margin: 10px
+    margin: 10px;
+   
+}
+.Btn{
+    margin: 10px;
+    background-color: 'rgb(149, 195, 226)';
+     color: 'white' 
 }
 .example{
     position:absolute !important;
-    }
+}
+
+.error{
+    font-size: 12px;
+    color: whitesmoke;
+    background-color: red;
+    padding: 10px;
+    margin-left: 5px;
+}
 @media screen and (max-width: 600px) {
     .cardStyle{
         width: 60vw;

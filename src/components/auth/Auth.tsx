@@ -12,7 +12,7 @@ const Auth = (props: any) => {
     const [showForm, setShowForm] = useState<string>('register');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [error, setError] = useState<string>('');
+    const [error, setError] = useState<string | null>('');
 
     const openNotification = (t: string) => {
         let mssg;
@@ -78,10 +78,12 @@ const Auth = (props: any) => {
     const changeEmail = (e: any) => {
         console.log(e.target.value);
         setEmail(e.target.value);
+        setError(null)
     }
     const changePassword = (e: any) => {
         console.log(e.target.value);
         setPassword(e.target.value);
+        setError(null)
     }
 
     return (
@@ -104,9 +106,12 @@ const Auth = (props: any) => {
                                 onChange={changePassword}
                                 style={{ margin: 10 }}
                             />
-                            <Button onClick={handleLogin} className={'margin'}>Login</Button>
-                            {error ? <p>{error}</p> : null}
-                            <p onClick={() => setShowForm('register')} className={'margin'}>Don't have an account? <span>Register.</span></p>
+                            <Button onClick={handleLogin} className='Btn' style={{backgroundColor: 'rgb(149, 195, 226)', color: 'white'}}>Login</Button>
+                            {error ? <p className="error">{error}</p> : null}
+                            <p onClick={() => {
+                                setShowForm('register')
+                                setError(null)
+                        }} className={'margin'}>Don't have an account? <span>Register.</span></p>
                         </Card>
                         :
 
@@ -126,9 +131,12 @@ const Auth = (props: any) => {
                                 onChange={changePassword}
                                 style={{ margin: 10 }}
                             />
-                            <Button onClick={handleRegister} className={'margin'}>Register</Button>
-                            {error ? <p>{error}</p> : null}
-                            <p onClick={() => setShowForm('login')} className={'margin'}>Already have an account? <span>Login Here</span></p>
+                            <Button onClick={handleRegister} className='Btn' style={{backgroundColor: 'rgb(149, 195, 226)', color: 'white'}}>Register</Button>
+                            {error ? <p className="error">{error}</p> : null}
+                            <p onClick={() => {
+                                setShowForm('login')
+                                 setError(null)}
+                                 } className={'margin'}>Already have an account? <span>Login Here</span></p>
                         </Card>
                 }
 
