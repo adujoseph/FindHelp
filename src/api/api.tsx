@@ -2,7 +2,7 @@ import axios from "axios";
 import { config } from '../config/config';
 import firebaseApp from '../config/firebase';
 
-const url_local: string = 'http://localhost:5000/graphql';
+const url_local: string = 'https://obscure-inlet-96721.herokuapp.com/graphql';
 
 const getSuggestions = async (data: string) => {
 
