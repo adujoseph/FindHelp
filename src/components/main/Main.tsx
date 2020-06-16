@@ -5,7 +5,10 @@ import {
     getSuggestions,
     getGeoCodes,
     saveSearchHistory,
-    getSearchHistory
+    getSearchHistory,
+    createUser,
+    createSearch,
+    fetchSearch
 } from '../../api/api';
 import './Main.css';
 
@@ -26,6 +29,7 @@ const { Text } = Typography;
 
 
 const Main = (props: MainProps | any) => {
+    const { user } = props;
     const [data, setData] = useState('');
     const [address, setAddress] = useState('');
     const [results, setResults] = useState<any[]>([]);
@@ -35,28 +39,18 @@ const Main = (props: MainProps | any) => {
     const [strings, setStrings] = useState<String>('hospitals');
     const [hist, setHist] = useState<any[]>([])
     const [showHistory, setShowHistory] = useState<boolean>(false)
+    const [userObj, setUserObj] = useState<any[]>([]);
 
     useEffect(() => {
-        historyData();
-    }, []);
+        // historyData();
 
+        setTimeout(function () {
+            console.log('5 seconds for you')
+            createUserQL()
+            fetchSearchByUser()
+        }, 2000);
 
-    //Firebase Query
-    const postSearch = () => {
-        const db =  FirebaseApp.firestore()
-        db.collection('searches').add({str: strings })
-    }
-    const getSearch = () => {
-        const db =  FirebaseApp.firestore()
-        db.collection('searches').doc().set({strings})
-    }
-    const logoutHandler = () => {
-        FirebaseApp.auth().signOut().then(function () {
-            // Sign-out successful.
-        }).catch(function (error) {
-            // An error happened.
-        });
-    }
+    }, [props.user]);
 
     //mongoDB fetch history 
     const historyData = async () => {
@@ -94,6 +88,7 @@ const Main = (props: MainProps | any) => {
         setData(item)
         setAddress(item)
         setShowHistory(false);
+        createSearchQL(); 
         if (address.length > 0) {
             getCoordinates()
             setShowHistory(false);
@@ -111,6 +106,7 @@ const Main = (props: MainProps | any) => {
                 let _lng = result.geometry.location.lng
                 placesApi(_lat, _lng, radius, strings);
             })
+            
         }
     }
     const getCurrentLocation = () => {
@@ -132,6 +128,7 @@ const Main = (props: MainProps | any) => {
             setPlaces(results)
             setLoading(false);
             await saveSearchHistory(address);
+            
 
         }
 
@@ -145,11 +142,33 @@ const Main = (props: MainProps | any) => {
         console.log(results)
 
     }
+    const createUserQL = async () => {
+        if (props.user) {
+            const resData = await createUser(props.user)
+            console.log('create user method:=>', resData.data.data.createUser._id)
+        }
+    }
+    const createSearchQL = async () => {
+       
+        if (props.user) {
+            
+            console.log('create search :+> /n',address, props.user['email'])
+            const resData = await createSearch(address, props.user['email'])
+            console.log('create search method:=>', resData)
+        }
+    }
 
-    console.log(places)
+    const fetchSearchByUser = async () => {
+        const resData = await fetchSearch(props.user['email'])
+        setHist(resData.data.data.fetchSearch)
+        console.log('fetch search method :=> ', resData.data.data.fetchSearch)
+    }
+
+    console.log('The current user email: ', props.user['email'])
+    console.log('The current user username: ', props.user['uid'])
     return (
         <Layout>
-            
+
             <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
 
                 <div className="site-layout-background" style={{ padding: 24, minHeight: '80vh' }}>

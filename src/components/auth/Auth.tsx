@@ -31,7 +31,10 @@ const Auth = (props: any) => {
     };
 
     const handleRegister = () => {
-        FirebaseApp.auth().createUserWithEmailAndPassword(email, password)
+        if(email === '' || password === ''){
+            setError('You cannot submit an empty field');
+        } else {
+            FirebaseApp.auth().createUserWithEmailAndPassword(email, password)
             .then(resp => {
                 console.log('sign up resp: ',resp.user);
 
@@ -46,6 +49,8 @@ const Auth = (props: any) => {
                 setError(errorMessage);
                 // ...
             });
+        }
+
     }
     const handleLogin = () => {
         if(email === '' || password === ''){

@@ -6,10 +6,7 @@ import Header from './components/header-footer/Header';
 import Footer from './components/header-footer/Footer';
 import { BrowserRouter as Router } from "react-router-dom";
 import firebaseApp, {fireMethods} from './config/firebase';
-import {
- saveUser,
- authListerner 
-} from './api/api';
+
 
 
 
@@ -19,26 +16,13 @@ const { auth } = fireMethods;
 function App() {
 
   const [currentUser, setCurrentUser] = useState<any | null>({});
-  let unsubscribeFromAuth = null
+  
 
   useEffect(() => {
-    // (async () => {
-    //   unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-    //     setCurrentUser(user)
-    //   })
-    // })()
    authRes();
   }, [])
 
   const authRes = async () => {
-
-    // const userObj :any =  await authListerner();
-    // if(userObj){
-    //   setCurrentUser(userObj)
-    //   console.log('from the Auth State Change',userObj['uid']);
-    // } else {
-    //   setCurrentUser(null)
-    // }
 
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -50,9 +34,7 @@ function App() {
       }
     })
   }
-  const postUser = async (s: String) => {
-    await saveUser(s);
-  }
+
   return (
     <div>
       <Router >

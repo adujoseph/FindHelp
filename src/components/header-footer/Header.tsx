@@ -7,7 +7,7 @@ import FirebaseApp from '../../config/firebase';
 
 const { Header } = Layout;
 
-const auth: any = fireMethods
+// const auth: any = fireMethods
 
 const HeaderContent = ({ user }: any) => {
     const [currentUser, setCurrentUser] = useState<any | null>({});
