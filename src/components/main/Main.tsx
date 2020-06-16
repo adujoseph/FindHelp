@@ -5,16 +5,15 @@ import {
     getSuggestions,
     getGeoCodes,
     saveSearchHistory,
-    getSearchHistory,
     createUser,
     createSearch,
     fetchSearch
 } from '../../api/api';
 import './Main.css';
 
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 import { RouteComponentProps } from "react-router-dom";
-import FirebaseApp from '../../config/firebase';
+//import FirebaseApp from '../../config/firebase';
 
 
 interface IProps { }
@@ -29,7 +28,7 @@ const { Text } = Typography;
 
 
 const Main = (props: MainProps | any) => {
-    const { user } = props;
+    // const { user } = props;
     const [data, setData] = useState('');
     const [address, setAddress] = useState('');
     const [results, setResults] = useState<any[]>([]);
@@ -39,7 +38,7 @@ const Main = (props: MainProps | any) => {
     const [strings, setStrings] = useState<String>('hospitals');
     const [hist, setHist] = useState<any[]>([])
     const [showHistory, setShowHistory] = useState<boolean>(false)
-    const [userObj, setUserObj] = useState<any[]>([]);
+    // const [userObj, setUserObj] = useState<any[]>([]);
 
     useEffect(() => {
         // historyData();
@@ -53,10 +52,10 @@ const Main = (props: MainProps | any) => {
     }, [props.user]);
 
     //mongoDB fetch history 
-    const historyData = async () => {
-        const { data: { data } } = await getSearchHistory()
-        setHist(data)
-    }
+    // const historyData = async () => {
+    //     const { data: { data } } = await getSearchHistory()
+    //     setHist(data)
+    // }
 
     const handleAddy = async (item: string) => {
         setStrings(item)
@@ -139,33 +138,33 @@ const Main = (props: MainProps | any) => {
         if (res.data.predictions) {
             setResults(res.data.predictions);
         }
-        console.log(results)
+        // console.log(results)
 
     }
     const createUserQL = async () => {
         if (props.user) {
-            const resData = await createUser(props.user)
-            console.log('create user method:=>', resData.data.data.createUser._id)
+          await createUser(props.user)
+            // console.log('create user method:=>', resData.data.data.createUser._id)
         }
     }
     const createSearchQL = async () => {
        
         if (props.user) {
             
-            console.log('create search :+> /n',address, props.user['email'])
-            const resData = await createSearch(address, props.user['email'])
-            console.log('create search method:=>', resData)
+            // console.log('create search :+> /n',address, props.user['email'])
+            await createSearch(address, props.user['email'])
+           // console.log('create search method:=>', resData)
         }
     }
 
     const fetchSearchByUser = async () => {
         const resData = await fetchSearch(props.user['email'])
         setHist(resData.data.data.fetchSearch)
-        console.log('fetch search method :=> ', resData.data.data.fetchSearch)
+       // console.log('fetch search method :=> ', resData.data.data.fetchSearch)
     }
 
-    console.log('The current user email: ', props.user['email'])
-    console.log('The current user username: ', props.user['uid'])
+    // console.log('The current user email: ', props.user['email'])
+    // console.log('The current user username: ', props.user['uid'])
     return (
         <Layout>
 

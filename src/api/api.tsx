@@ -1,6 +1,6 @@
 import axios from "axios";
 import { config } from '../config/config';
-import firebaseApp from '../config/firebase';
+
 
 const url_local: string = 'https://obscure-inlet-96721.herokuapp.com/graphql';
 

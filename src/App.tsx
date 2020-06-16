@@ -5,12 +5,8 @@ import Auth from './components/auth/Auth';
 import Header from './components/header-footer/Header';
 import Footer from './components/header-footer/Footer';
 import { BrowserRouter as Router } from "react-router-dom";
-import firebaseApp, {fireMethods} from './config/firebase';
+import firebaseApp from './config/firebase';
 
-
-
-
-const { auth } = fireMethods;
 
 
 function App() {

@@ -1,28 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Layout, Menu, Row, Col } from 'antd';
-import { fireMethods } from '../../config/firebase';
 import { Link } from "react-router-dom";
 import FirebaseApp from '../../config/firebase';
 
 
 const { Header } = Layout;
 
-// const auth: any = fireMethods
 
 const HeaderContent = ({ user }: any) => {
-    const [currentUser, setCurrentUser] = useState<any | null>({});
-    //   let unsubscribeFromAuth : any = null
-    //   useEffect(() => {
-    //     (async () => {
-    //       unsubscribeFromAuth = auth.onAuthStateChanged((user: any) => {
-    //         setCurrentUser(user)
-    //       })
-    //     })()
-    //     return () => {
-    //         unsubscribeFromAuth() 
-    //     }
-    //    // authRes();
-    //   }, [])
 
     const logoutHandler = () => {
         FirebaseApp.auth().signOut().then(function () {
