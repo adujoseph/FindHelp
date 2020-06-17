@@ -43,8 +43,8 @@ const Main = (props: MainProps | any) => {
   
     useEffect(() => {
         createUserQL();
-        fetchSearchByUser();
-    }, [hist]);
+        //fetchSearchByUser();
+    }, []);
 
     //mongoDB fetch history 
     // const historyData = async () => {
@@ -86,10 +86,12 @@ const Main = (props: MainProps | any) => {
         if (address.length > 0) {
             getCoordinates()
             setShowHistory(false);
+           // fetchSearchByUser();
         }
     }
     const handleSearchHistory = () => {
         setShowHistory(true);
+        fetchSearchByUser()
     }
     const getCoordinates = async () => {
         console.log("address: => ",address);
