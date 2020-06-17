@@ -23,7 +23,7 @@ function App() {
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
         setCurrentUser(user)
-        console.log('from the Auth State Change',user['uid']);
+        // console.log('from the Auth State Change',user['uid']);
         // postUser(user['uid']);
       } else {
         setCurrentUser(null)

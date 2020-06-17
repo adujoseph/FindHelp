@@ -40,16 +40,11 @@ const Main = (props: MainProps | any) => {
     const [showHistory, setShowHistory] = useState<boolean>(false)
     // const [userObj, setUserObj] = useState<any[]>([]);
 
+  
     useEffect(() => {
-        // historyData();
-
-        setTimeout(function () {
-            console.log('5 seconds for you')
-            createUserQL()
-            fetchSearchByUser()
-        }, 2000);
-
-    }, [props.user]);
+        createUserQL();
+        fetchSearchByUser();
+    }, [hist]);
 
     //mongoDB fetch history 
     // const historyData = async () => {
@@ -97,6 +92,7 @@ const Main = (props: MainProps | any) => {
         setShowHistory(true);
     }
     const getCoordinates = async () => {
+        console.log("address: => ",address);
         setResults([])
         if (address) {
             const { results } = await getGeoCodes(address);
@@ -104,6 +100,7 @@ const Main = (props: MainProps | any) => {
                 let _lat = result.geometry.location.lat
                 let _lng = result.geometry.location.lng
                 placesApi(_lat, _lng, radius, strings);
+
             })
             
         }
@@ -148,8 +145,7 @@ const Main = (props: MainProps | any) => {
         }
     }
     const createSearchQL = async () => {
-       
-        if (props.user) {
+       if (props?.user) {
             
             // console.log('create search :+> /n',address, props.user['email'])
             await createSearch(address, props.user['email'])
@@ -160,11 +156,9 @@ const Main = (props: MainProps | any) => {
     const fetchSearchByUser = async () => {
         const resData = await fetchSearch(props.user['email'])
         setHist(resData.data.data.fetchSearch)
-       // console.log('fetch search method :=> ', resData.data.data.fetchSearch)
+        console.log("in search by user",hist)
     }
-
-    // console.log('The current user email: ', props.user['email'])
-    // console.log('The current user username: ', props.user['uid'])
+   
     return (
         <Layout>
 

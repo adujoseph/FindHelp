@@ -108,8 +108,8 @@ const createUser = async (user: any) => {
 }
 
 const createSearch = async (address: String, creator: String) => {
-    console.log('api/createSearch :=> ',creator)
-    console.log('api/createSearch :=> ',address)
+   // console.log('api/createSearch :=> ',creator)
+   // console.log('api/createSearch :=> ',address)
     const queryData = {
         query: `
         mutation {
@@ -126,13 +126,12 @@ const createSearch = async (address: String, creator: String) => {
     }
 }
 
-const fetchSearch = async (email: String) => {
+const fetchSearch = async (email: string) => {
     const queryData = {
         query: `
         mutation {
             fetchSearch(fetchInput: {email:"${email}"}){
               address
-              _id
             }
           }
         `
