@@ -40,7 +40,7 @@ const Main = (props: MainProps | any) => {
     const [showHistory, setShowHistory] = useState<boolean>(false)
     // const [userObj, setUserObj] = useState<any[]>([]);
 
-  
+
     useEffect(() => {
         createUserQL();
         //fetchSearchByUser();
@@ -72,6 +72,7 @@ const Main = (props: MainProps | any) => {
 
     const handleEnterPress = () => {
         if (radius > 0) {
+            createSearchQL()
             getCoordinates()
             setResults([])
         }
@@ -82,11 +83,11 @@ const Main = (props: MainProps | any) => {
         setData(item)
         setAddress(item)
         setShowHistory(false);
-        createSearchQL(); 
+        createSearchQL();
         if (address.length > 0) {
             getCoordinates()
             setShowHistory(false);
-           // fetchSearchByUser();
+            // fetchSearchByUser();
         }
     }
     const handleSearchHistory = () => {
@@ -94,7 +95,7 @@ const Main = (props: MainProps | any) => {
         fetchSearchByUser()
     }
     const getCoordinates = async () => {
-        console.log("address: => ",address);
+        console.log("address: => ", address);
         setResults([])
         if (address) {
             const { results } = await getGeoCodes(address);
@@ -104,7 +105,7 @@ const Main = (props: MainProps | any) => {
                 placesApi(_lat, _lng, radius, strings);
 
             })
-            
+
         }
     }
     const getCurrentLocation = () => {
@@ -126,7 +127,7 @@ const Main = (props: MainProps | any) => {
             setPlaces(results)
             setLoading(false);
             await saveSearchHistory(address);
-            
+
 
         }
 
@@ -142,25 +143,25 @@ const Main = (props: MainProps | any) => {
     }
     const createUserQL = async () => {
         if (props.user) {
-          await createUser(props.user)
+            await createUser(props.user)
             // console.log('create user method:=>', resData.data.data.createUser._id)
         }
     }
     const createSearchQL = async () => {
-       if (props?.user) {
-            
+        if (props?.user) {
+
             // console.log('create search :+> /n',address, props.user['email'])
             await createSearch(address, props.user['email'])
-           // console.log('create search method:=>', resData)
+            // console.log('create search method:=>', resData)
         }
     }
 
     const fetchSearchByUser = async () => {
         const resData = await fetchSearch(props.user['email'])
         setHist(resData.data.data.fetchSearch)
-        console.log("in search by user",hist)
+        console.log("in search by user", hist)
     }
-   
+
     return (
         <Layout>
 
@@ -168,18 +169,27 @@ const Main = (props: MainProps | any) => {
 
                 <div className="site-layout-background" style={{ padding: 24, minHeight: '80vh' }}>
 
-                    <h2 style={{ textAlign: 'center' }} className="color"> Find the next clinic closest to your address </h2>
+                    <h2 style={{ textAlign: 'center' }} className="color"> Find Health Facility Centre Close to You </h2>
                     <div>
                         <div style={{ alignItems: 'center' }}>
                             <Input.Group compact >
-                                <Select defaultValue="10 km Radius" onSelect={(value) => setRadius(Number(value) * 1000)}>
+                                <Select defaultValue="10 km Radius" onSelect={(value) => {
+                                    // getCoordinates()
+                                    setRadius(Number(value) * 1000)
+                                    
+                                }}>
                                     <Option value="10">10 km Radius</Option>
                                     <Option value="20">20 km  Radius</Option>
                                     <Option value="50">50 km  Radius</Option>
                                     <Option value="100">100 km  Radius</Option>
                                     <Option value="200">200 km  Radius</Option>
                                 </Select>
-                                <Select defaultValue="Hospital" onSelect={(value) => setStrings(value)}>
+                                <Select defaultValue="Hospital" onSelect={(value) => {
+                                    // getCoordinates()
+                                    setStrings(value)
+                                    
+                        
+                                    }}>
                                     <Option value="Hospitals">Hospitals</Option>
                                     <Option value="Pharmacies">Pharmacy</Option>
                                     <Option value="Clinics">Clinics</Option>
